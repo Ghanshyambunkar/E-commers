@@ -1,0 +1,115 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.6%;
+    font-family: "urbanist";
+}
+
+p,li,a,button{
+    font-size: 1.7rem;
+    letter-spacing: .1rem;
+    text-decoration: none;
+}
+
+li{
+    list-style: none;
+}
+
+a {
+    color: #000;
+
+    &:hover {
+        color: #2e86c1;
+        text-decoration: underline;
+    }
+}
+
+button {
+    cursor: pointer;
+}
+
+header{
+    height: 10rem;
+    box-shadow: rgba(33, 35, 38, .1) 0px 10px 10px -10px;
+    background-color: #d4e6f1;
+    width: 100%;
+}
+.container{
+    max-width: 115rem;
+    margin: auto;
+    height: 10rem;
+}
+
+.grid{
+    display: grid;
+}
+
+.navbar-grid{
+    grid-template-columns: .5fr 1fr;
+    align-items: center;
+    height: 10rem;
+    padding: 0 3.2rem;
+}
+
+nav ul {
+    display: flex;
+    justify-content: flex-end;
+    gap: 3.2rem;
+}
+
+.ham-menu {
+    display: none;
+}
+
+/* media queries */
+@media screen and (max-width: 900px){
+    .menu-web{
+        display: none;
+    }
+
+    .ham-menu {
+        display: inline-block;
+        text-align: end;
+    }
+
+    .menu-mobile {
+        position: absolute;
+        top: 10rem;
+        left:0;
+        background-color: #fff;
+        width: 100%;
+    }
+
+    .menu-mobile ul {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        &li:first-child{
+            margin-top: 1.2rem;
+        }
+        &li:last-child{
+            margin-bottom: 1.2rem;
+        }
+    }
+}
+
+nav li:nth-last-child(3) {
+    width: 1px;
+    height: 24px;
+    margin: 0 2rem;
+}
+
+nav svg {
+    /* font-size: 1.2rem; */
+    transition: transform 0.3s ease;
+}
+
+nav svg:hover {
+    transform: scale(1.1);
+    color: #4a90e2;
+}
