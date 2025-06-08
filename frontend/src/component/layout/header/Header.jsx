@@ -25,10 +25,10 @@ const Header = () =>{
                     <nav className={showMenu ? "menu-mobile" : "menu-web"}>
                         <ul>
                             <li><a href="/"> Home</a></li>
-                            <li><a href="/products">Product</a></li>
+                            <li><a href="/products">Products</a></li>
                             <li><a href="#">Contact</a></li>
                             <li><a href="#">About</a></li>
-                            <li><FaSearch /></li>
+                            <li><a href="/search"><FaSearch /></a></li>
                             <li><IoCart /></li>
                             <li><CgProfile /></li>
                         </ul>

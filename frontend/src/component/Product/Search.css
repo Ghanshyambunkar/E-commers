@@ -1,0 +1,55 @@
+.searchBox {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to right, #e3f2fd, #e0f7fa);
+  padding: 2vmax;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+  gap: 1vmax;
+}
+
+.searchBox > input[type='text'] {
+  width: 60%;
+  max-width: 500px;
+  padding: 1.2vmax 2vmax;
+  font: 500 1.1vmax "Poppins", cursive;
+  color: #333;
+  background: #ffffff;
+  border: none;
+  border-radius: 3vmax;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.searchBox > input[type='text']::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.searchBox > input[type='text']:focus {
+  box-shadow: 0 0 0 4px rgba(78, 84, 200, 0.2);
+  background-color: #fdfdfd;
+}
+
+.searchBox > input[type='submit'] {
+  height: auto;
+  padding: 1.2vmax 2vmax;
+  border-radius: 3vmax;
+  background: linear-gradient(to right, #4e54c8, #8f94fb);
+  border: none;
+  font: 500 1.1vmax "Roboto", sans-serif;
+  cursor: pointer;
+  color: white;
+  transition: all 0.4s ease;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+.searchBox > input[type='submit']:hover {
+  background: linear-gradient(to right, #3b3fbb, #7a80f8);
+  transform: scale(1.05);
+}
