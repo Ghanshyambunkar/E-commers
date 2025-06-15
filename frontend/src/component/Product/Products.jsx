@@ -8,15 +8,27 @@ import { useParams } from 'react-router-dom';
 import Pagination from "react-js-pagination";
 import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
+import MetaData from '../MetaData';
+
+const categories = [
+    "Laptop",
+    "SmartPhones",
+    "Cemera",
+    "Footwear",
+];
 
 function Products() {
     const dispatch = useDispatch();
 
     const [currentPage, setCurrentPage] = useState(1);
 
-    const [price, setPrice] = useState([0, 25000]);
+    const [price, setPrice] = useState([0, 50000]);
 
-    const { products, loading, error, productsCount, resultPerPage } = useSelector(
+    const [category, setCategory] = useState("");
+
+    const [rating, setRating] = useState(0);
+
+    const { products, loading, error, productsCount, resultPerPage, filteredProductsCount} = useSelector(
         (state) => state.products
     );
 
@@ -31,8 +43,14 @@ function Products() {
     }
 
     useEffect(() => {
-        dispatch(getProducts({ keyword, currentPage, price }));
-    }, [dispatch, keyword, currentPage, price]);
+        if(error){
+            alert(error);
+            dispatch(clearErrors());
+        }
+        dispatch(getProducts({ keyword, currentPage, price, category, rating }));
+    }, [dispatch, keyword, currentPage, price, category, rating, error]);
+
+    let count = filteredProductsCount;
 
     return (
         <>
@@ -40,9 +58,9 @@ function Products() {
                 <Loader />
             ) : (
                 <>
-                    <h2 className="productsHeading">Products</h2>
+                    <MetaData title="PRODUCTS -- ECOMMERCE" />
 
-                    {error && <p className="errorMessage">{error}</p>}
+                    <h2 className="productsHeading">Products</h2>
 
                     <div className="products">
                         {products && products.map((product) => (
@@ -59,11 +77,44 @@ function Products() {
                             onChange={priceHandler}
                             valueLabelDisplay="auto"
                             min={0}
-                            max={25000}
+                            max={50000}
                         />
+
+                        <Typography variant="h6" gutterBottom>
+                            Categories
+                        </Typography>
+                        <ul className='categoryBox'>
+                        {categories.map((category) => (
+                            <li
+                            className='category-link'
+                            key={category}
+                            onClick={() => setCategory(category)}
+                            >
+                            {category}
+                            </li>
+                        ))}
+                        </ul>
+
+                        <fieldset className="ratingFilter">
+                            <legend className="ratingLegend">
+                                <Typography variant="h6" component="legend">Ratings Above</Typography>
+                            </legend>
+                            <Slider 
+                                value={rating}
+                                onChange={(e, newRating) => {
+                                    setRating(newRating);
+                                }}
+                                aria-labelledby='continuous-slider'
+                                valueLabelDisplay='auto'
+                                min={0}
+                                max={5}
+                                sx={{
+                                    color: '#f39c12',
+                                }}/>
+                        </fieldset>
                     </div>
 
-                    {resultPerPage < productsCount && (
+                    {resultPerPage < count && (
                         <div className="paginationBox">
                             <Pagination
                                 activePage={currentPage}

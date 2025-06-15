@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import ReviewCard from './ReviewCard';
 import Loader from '../layout/Loader/Loader';
+import MetaData from '../MetaData';
 
 function ProductDetails() {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ function ProductDetails() {
         <Loader />
       ) : (
         <>
+          <MetaData title={`${product.name} -- ECOMMERCE`} />
           <div className="ProductDetails">
             {/* Carousel with interval and caption */}
             <div>

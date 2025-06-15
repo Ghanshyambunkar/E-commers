@@ -35,7 +35,7 @@ button {
 header{
     height: 10rem;
     box-shadow: rgba(33, 35, 38, .1) 0px 10px 10px -10px;
-    background-color: #d4e6f1;
+    background-color: #a6c2d3f6;
     width: 100%;
 }
 .container{
@@ -66,37 +66,48 @@ nav ul {
 }
 
 /* media queries */
-@media screen and (max-width: 900px){
-    .menu-web{
-        display: none;
-    }
+@media screen and (max-width: 900px) {
+  .menu-web {
+    display: none;
+  }
 
-    .ham-menu {
-        display: inline-block;
-        text-align: end;
-    }
+  .ham-menu {
+    display: inline-block;
+    text-align: end;
+    cursor: pointer;
+  }
 
-    .menu-mobile {
-        position: absolute;
-        top: 10rem;
-        left:0;
-        background-color: #fff;
-        width: 100%;
-    }
+  .menu-mobile {
+    display: block; /* <- Ensure this is here */
+    position: absolute;
+    top: 10rem;
+    left: 0;
+    background-color: #d4e6f1;;
+    width: 100%;
+    z-index: 1000;
+    /* margin-bottom: 50rem; */
+    
+  }
 
-    .menu-mobile ul {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
+  .menu-mobile ul {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+  }
 
-        &li:first-child{
-            margin-top: 1.2rem;
-        }
-        &li:last-child{
-            margin-bottom: 1.2rem;
-        }
-    }
+  .menu-mobile ul li:first-child {
+    margin-top: 1.2rem;
+  }
+
+  .menu-mobile ul li:last-child {
+    margin-bottom: 1.2rem;
+  }
 }
+
+
 
 nav li:nth-last-child(3) {
     width: 1px;

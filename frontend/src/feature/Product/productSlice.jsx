@@ -4,12 +4,18 @@ import axios from 'axios';
 // Async thunk for fetching products
 export const getProducts = createAsyncThunk(
   'products/fetchAll',
-  async ({ keyword = "", currentPage = 1 ,price=[0,2500]}, { rejectWithValue }) => {
+  async ({ keyword = "", currentPage = 1 ,price=[0,50000], category, rating=0}, { rejectWithValue }) => {
     try {
-          const response = await axios.get(
-          `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}`
-        );
+
+      let link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&rating[gte]=${rating}`;
+
+      if(category){
+        link = `/api/v1/products?keyword=${keyword}&page=${currentPage}&price[gte]=${price[0]}&price[lte]=${price[1]}&category=${category}&rating[gte]=${rating}`;
+      }
+      const response = await axios.get(link);
+
       return response.data;
+
     } catch (error) {
       const message =
         error?.response?.data?.message || error?.message || 'Something went wrong';
@@ -27,6 +33,7 @@ const productSlice = createSlice({
     products: [],
     productsCount: 0,
     resultPerPage: 1,
+    filteredProductsCount: 0,
     error: null,
   },
   reducers: {
@@ -44,6 +51,7 @@ const productSlice = createSlice({
         state.products = action.payload.products;
         state.productsCount = action.payload.productsCount;
         state.resultPerPage = action.payload.resultPerPage;
+        state.filteredProductsCount = action.payload.filteredProductsCount;
       })
       .addCase(getProducts.rejected, (state, action) => {
         state.loading = false;

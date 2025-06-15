@@ -16,6 +16,7 @@
     flex-wrap: wrap;
     justify-content: center;
     max-width: 100%;
+    min-height: 10vh;
 }
 
 .paginationBox {
@@ -67,5 +68,55 @@
 }
 
 .pageLinkActive {
-    color: white;
+    color: black;
+}
+
+.filterBox {
+    width: 10vmax;
+    position: absolute;
+    top: 10vmax;
+    left: 4vmax;
+}
+
+.categoryBox {
+    padding: 0%;
+}
+
+.category-link {
+    list-style: none;
+    color: rgba(0, 0, 0, 0.600);
+    font: 400 1.1vmax "Roboto";
+    margin: 0.4vmax;
+    cursor:pointer;
+    transition: all 0.5s ease;
+}
+
+.category-link:hover {
+    color: tomato;
+}
+
+.ratingFilter {
+  border: 2px solid #f1f1f1;
+  padding: 1rem 1.5rem;
+  margin-top: 1.5rem;
+  border-radius: 8px;
+  background-color: #fafafa;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+.ratingLegend {
+  margin-bottom: 0.5rem;
+}
+
+
+@media screen and (max-width: 600px){
+    .filterBox {
+        width: 20vmax;
+        position: static;
+        margin: auto;
+    }
+
+    .page-link {
+        font: 300 1.7vmax "Roboto";
+    }
 }
